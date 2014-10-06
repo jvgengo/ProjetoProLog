@@ -31,14 +31,29 @@ aluno(12746,lais).
 cursa(12176,1).
 cursa(12189,2).
 
+% historico (ra,[i1,i2,....,in])
+historico(12176,[item(1,1,2012,3.0,0.77),item(1,2,2013,6.5,0.90),item(5,1,2014,8.0,0.80)]).
+historico(12189,[item(1,1,2012,7.0,0.80),item(2,2,2013,8.5,0.80),item(3,1,2014,5.0,0.75)]).
+historico(12123,[item(5,1,2012,6.0,0.70),item(5,2,2013,7.5,0.90),item(6,1,2014,5.0,0.90)]).
+historico(12789,[item(7,1,2012,6.0,0.75),item(8,2,2014,8.0,0.89)]).
+
+% predicado que retorno a lista dos codigos de materias concluidas
+materias_feitas(RA,LISTA_R):-historico(RA,A),materias_feitas_aux(A,LISTA_R).
+materias_feitas_aux([],[]).
+materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@>=5,F@>=0.75,materias_feitas_aux(R,NOVO_R).
+	
+	
 %======================================================================
-%1)Descobrir se um aluno, cujo RA será fornecido, concluiu o curso cujo
-% código também será fornecido; execução pretendida:
+% 1) Descobrir se um aluno, cujo RA será fornecido, concluiu o curso
+% cujo código também será fornecido; execução pretendida:
+% concluiu(12909,1).
 %======================================================================
 
 
+
+
 %======================================================================
-%2)Produzir a lista dos nomes das matérias que faltam para um aluno,
+% 2) Produzir a lista dos nomes das matérias que faltam para um aluno,
 % cujo RA será fornecido, concluir o curso, cujo código também será
 % fornecido (a lista produzida deve ser retornada em um terceiro
 % parâmetro); execução pretendida:
@@ -53,9 +68,29 @@ cursa(12189,2).
 
 
 %======================================================================
-% 4. Calcular quantos por cento das matérias obrigatórias para a
+% 4) Calcular quantos por cento das matérias obrigatórias para a
 % conclusão do curso cujo código será fornecido, um aluno, cujo RA será
 % fornecido já cumpriu (disciplinas extra curriculares devem ser
 % desconsideradas e o percentual calculado deve ser retornado em um
 % terceiro parâmetro); e.g.:
 %======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
