@@ -45,7 +45,6 @@ materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@>=5,F@<0.75,materias_fe
 materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@<5,F@>=0.75,materias_feitas_aux(R,NOVO_R).
 materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@<5,F@<0.75,materias_feitas_aux(R,NOVO_R).
 
-	
 %======================================================================
 % 1) Descobrir se um aluno, cujo RA será fornecido, concluiu o curso
 % cujo código também será fornecido; execução pretendida:
@@ -53,7 +52,7 @@ materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@<5,F@<0.75,materias_fei
 %======================================================================
 
 contem_lista(LISTA_A,LISTA_B):-contem_aux(LISTA_A,LISTA_B).
-contem_aux([],[]).  
+contem_aux([],[]).
 
 
 %======================================================================
