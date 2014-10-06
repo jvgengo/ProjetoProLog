@@ -28,8 +28,8 @@ aluno(12789,bruno).
 aluno(12746,lais).
 
 % cursa(ra,cc)
-cursa(12176,1).
-cursa(12189,2).
+cursa(12909,1).
+cursa(12080,2).
 
 %======================================================================
 %1)Descobrir se um aluno, cujo RA será fornecido, concluiu o curso cujo
