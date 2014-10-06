@@ -38,10 +38,13 @@ historico(12123,[item(5,1,2012,6.0,0.70),item(5,2,2013,7.5,0.90),item(6,1,2014,5
 historico(12789,[item(7,1,2012,6.0,0.75),item(8,2,2014,8.0,0.89)]).
 
 % predicado que retorno a lista dos codigos de materias concluidas
-materias_feitas(RA,LISTA_R):-historico(RA,A),materias_feitas_aux(A,LISTA_R).
+matermaterias_feitas(RA,LISTA_R):-historico(RA,A),materias_feitas_aux(A,LISTA_R).
 materias_feitas_aux([],[]).
 materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@>=5,F@>=0.75,materias_feitas_aux(R,NOVO_R).
-	
+materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@>=5,F@<0.75,materias_feitas_aux(R,NOVO_R).
+materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@<5,F@>=0.75,materias_feitas_aux(R,NOVO_R).
+materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@<5,F@<0.75,materias_feitas_aux(R,NOVO_R).
+
 	
 %======================================================================
 % 1) Descobrir se um aluno, cujo RA será fornecido, concluiu o curso
@@ -49,7 +52,8 @@ materias_feitas_aux([item(CM,_,_,N,F)|R],[CM|NOVO_R]):-N@>=5,F@>=0.75,materias_f
 % concluiu(12909,1).
 %======================================================================
 
-
+contem_lista(LISTA_A,LISTA_B):-contem_aux(LISTA_A,LISTA_B).
+contem_aux([],[]).  
 
 
 %======================================================================
