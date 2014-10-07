@@ -90,13 +90,13 @@ nomeMaterias([CM|R],[NOME|NOVO_R]):-materia(CM,NOME,_),nomeMaterias(R,NOVO_R).
 falta(RA,CC,OQUE):-materias_aprovadas(RA,LISTA_R),curriculo(CC,LISTA_C),removeLista(LISTA_R,LISTA_C,LISTA_N_CONCLUIDAS),nomeMaterias(LISTA_N_CONCLUIDAS,OQUE).
 
 %======================================================================
-% 3) Produzir a lista dos nomes das mat�rias extra curriculares cursadas
-% pelo aluno, cujo RA ser� fornecido (o c�digo do curso a ser considerado
-% sera fornecido em um segundo par�metro e a lista produzida deve ser
-% retornada em um terceiro par�metro); execu��o pretendida:
+% 3) Produzir a lista dos nomes das materias extra curriculares cursadas
+% pelo aluno, cujo RA sera fornecido (o codigo do curso a ser considerado
+% sera fornecido em um segundo parametro e a lista produzida deve ser
+% retornada em um terceiro parametro); execucaoo pretendida:
 %======================================================================
 
-%extra(RA,CC,LISTA_R):-materiasCursadas(RA,LISTA_M),curriculo(CC,LISTA_C),removeLista(LISTA_C,LISTA_M,S),nomeMaterias(S,N).
+extra(RA,CC,LISTA_R):-materias_cursadas(RA,LISTA_M),curriculo(CC,LISTA_C),removeLista(LISTA_C,LISTA_M,LISTA_EXTRAS),nomeMaterias(LISTA_EXTRAS,LISTA_R).
 
 %======================================================================
 % 4) Calcular quantos por cento das mat�rias obrigat�rias para a
