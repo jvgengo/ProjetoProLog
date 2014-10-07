@@ -27,11 +27,13 @@ aluno(12189,maria).
 aluno(12123,rodrigo).
 aluno(12789,bruno).
 aluno(12179,lais).
+aluno(12177,zeza1).
 
 % cursa(ra,cc)
 cursa(12176,1).
 cursa(12189,2).
 cursa(12179,3).
+cursa(12177,2).
 
 % historico (ra,[i1,i2,....,in])
 historico(12176,[item(3,1,2012,5.5,0.77),item(2,2,2013,6.5,0.90),item(5,1,2014,8.0,0.80)]).
@@ -39,6 +41,7 @@ historico(12189,[item(1,1,2012,7.0,0.80),item(2,2,2013,8.5,0.80),item(3,1,2014,5
 historico(12123,[item(5,1,2012,6.0,0.70),item(5,2,2013,7.5,0.90),item(6,1,2014,5.0,0.90)]).
 historico(12789,[item(7,1,2012,6.0,0.75),item(8,2,2014,8.0,0.89)]).
 historico(12179,[item(1,2,2000,9,0.8),item(5,2,2000,9,0.8)]).
+historico(12177,[item(5,1,2024,6.0,0.80)]).
 
 % predicado que retorna a lista dos codigos de materias aprovadas
 materias_aprovadas(RA,LISTA_R):-historico(RA,A),materias_aprovadas_aux(A,LISTA_R).
@@ -99,11 +102,14 @@ falta(RA,CC,OQUE):-materias_aprovadas(RA,LISTA_R),curriculo(CC,LISTA_C),removeLi
 extra(RA,CC,LISTA_R):-materias_cursadas(RA,LISTA_M),curriculo(CC,LISTA_C),removeLista(LISTA_C,LISTA_M,LISTA_EXTRAS),nomeMaterias(LISTA_EXTRAS,LISTA_R).
 
 %======================================================================
-% 4) Calcular quantos por cento das mat�rias obrigat�rias para a
-% conclus�o do curso cujo c�digo ser� fornecido, um aluno, cujo RA ser�
-% fornecido j� cumpriu (disciplinas extra curriculares devem ser
+% 4) Calcular quantos por cento das materias obrigatorias para a
+% conclusao do curso cujo codigo sera fornecido, um aluno, cujo RA sera
+% fornecido ja cumpriu (disciplinas extra curriculares devem ser
 % desconsideradas e o percentual calculado deve ser retornado em um
-% terceiro par�metro); e.g.:
+% terceiro parametro); e.g.:
 %======================================================================
 
-%  quanto(CC,RA,QUANTO):-
+tam([],0).
+tam([X|R],TAMANHO):-tam(R,SOMA), TAMANHO is SOMA+1.
+
+jaFoi(CC,RA,QUANTO):-materias_cursadas(RA,LISTA_M),curriculo(CC,LISTA_C),removeLista(LISTA_M,LISTA_C,LISTA_FALTANTES),tam(LISTA_FALTANTES,TAM_FALTANTES),tam(LISTA_C,TAM_C),QUANTO is (1-TAM_FALTANTES/TAM_C)*100.
