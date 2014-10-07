@@ -75,7 +75,7 @@ nomeMaterias([item(CM,_,_,N,_)|R],[N|NOVO_R]):-nomeMaterias(R,NOVO_R).
 tem(X,[X|_]).
 tem(X,[P|R]):-X\==P,tem(X,R).
 
-contem_lista(_,[_|_]).
+contem_lista([],[]).
 contem_lista([X|R],LISTA):-tem(X,LISTA),contem_lista(R,LISTA).
 
 concluiu(RA,CC):-materias_aprovadas(RA,LISTA_R),curriculo(CC,LISTA_C),contem_lista(LISTA_C,LISTA_R).
